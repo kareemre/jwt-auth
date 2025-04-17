@@ -1,0 +1,40 @@
+Metadata-Version: 2.4
+Name: flask-api-tutorial
+Version: 0.1
+Summary: Boilerplate Flask API with Flask-RESTx, SQLAlchemy, pytest, flake8, tox configured
+Author: Kareem Refaat
+Maintainer: Kareem Refaat
+License: MIT
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Flask
+Requires-Dist: Flask-Bcrypt
+Requires-Dist: Flask-Cors
+Requires-Dist: Flask-Migrate
+Requires-Dist: Flask-SQLAlchemy
+Requires-Dist: PyJWT
+Requires-Dist: python-dateutil
+Requires-Dist: python-dotenv
+Requires-Dist: requests
+Requires-Dist: urllib3
+Requires-Dist: psycopg2-binary
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: pydocstyle; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-black; extra == "dev"
+Requires-Dist: pytest-clarity; extra == "dev"
+Requires-Dist: pytest-dotenv; extra == "dev"
+Requires-Dist: pytest-flake8; extra == "dev"
+Requires-Dist: pytest-flask; extra == "dev"
+Requires-Dist: tox; extra == "dev"
+Dynamic: author
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: maintainer
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
