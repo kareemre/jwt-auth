@@ -42,6 +42,7 @@ EXTRAS_REQUIRE = {
         "pytest-flake8",
         "pytest-flask",
         "tox",
+        "flask-restx",
     ]
 }
 

@@ -30,6 +30,7 @@ Requires-Dist: pytest-dotenv; extra == "dev"
 Requires-Dist: pytest-flake8; extra == "dev"
 Requires-Dist: pytest-flask; extra == "dev"
 Requires-Dist: tox; extra == "dev"
+Requires-Dist: flask-restx; extra == "dev"
 Dynamic: author
 Dynamic: description-content-type
 Dynamic: license

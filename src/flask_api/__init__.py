@@ -15,6 +15,9 @@ bcrypt = Bcrypt()
 def create_app(config_name):
     app = Flask("flask-api")
     app.config.from_object(get_config(config_name))
+    
+    from flask_api.api import api_blueprint
+    app.register_blueprint(api_blueprint)
 
     cors.init_app(app)
     db.init_app(app)

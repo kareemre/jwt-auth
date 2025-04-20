@@ -32,12 +32,15 @@ def decode_access_token(token):
     try:
         key = current_app.config.get("SECRET_KEY")
         payload = jwt.decode(token, key, algorithms=["HS256"])
+        
     except jwt.ExpiredSignatureError:
         error = "Access token expired please log in again"
         return result.Fail(error)
+    
     except jwt.InvalidTokenError:
         error = "Invalid access token, please log in again"
         return result.Fail(error)
+    
     user_dict = dict(
         user_id=payload["sub"],
         admin=payload["admin"],

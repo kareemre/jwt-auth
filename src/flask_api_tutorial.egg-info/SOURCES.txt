@@ -7,8 +7,10 @@ src/flask_api/api/__init__.py
 src/flask_api/api/auth/__init__.py
 src/flask_api/api/widgets/__init__.py
 src/flask_api/models/__init__.py
+src/flask_api/models/user.py
 src/flask_api/util/__init__.py
 src/flask_api/util/datetime_util.py
+src/flask_api/util/jwt_util.py
 src/flask_api/util/result.py
 src/flask_api_tutorial.egg-info/PKG-INFO
 src/flask_api_tutorial.egg-info/SOURCES.txt
