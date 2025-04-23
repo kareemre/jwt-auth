@@ -48,8 +48,8 @@ class User(db.Model):
         :param password: The password to hash
         :return: None
         """
-        log_rounds = current_app.config.get("BCRYPT_LOG_ROUNDS")
-        hash_bytes = bcrypt.generate_password_hash(password, log_rounds=log_rounds)
+        # log_rounds = current_app.config.get("BCRYPT_LOG_ROUNDS")
+        hash_bytes = bcrypt.generate_password_hash(password)
         self.password_hash = hash_bytes.decode("utf-8")
     
     def check_password(self, password):

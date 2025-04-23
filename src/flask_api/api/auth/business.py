@@ -18,17 +18,31 @@ def process_registration_request(email, password):
     db.session.add(new_user)
     db.session.commit()
     access_token = encode_access_token(new_user)
-    response = jsonify(
-        {
-            "status": "success",
-            "message": f"User {email} registered successfully",
-            "access_token": access_token,
-            "expires_in": _get_token_expire_time,
-        }
+    return _create_auth_successful_response(
+        token=access_token.decode(),
+        status_code=HTTPStatus.CREATED,
+        message="successfully registered",
     )
-    response.status_code = HTTPStatus.CREATED
+
+
+def _create_auth_successful_response(token, status_code, message):
+    """Creates a response for successful authentication.
+    :param: token: JWT token
+    :param: status_code: HTTP status code
+    :param: message: success message
+    :return: JSON response with token and message
+    """
+    response = jsonify(
+        
+            "status": "success",
+            "message": message,
+            "access_token": token,
+            "expires_in": _get_token_expire_time(),
+    )
+    response.status_code = status_code
     response.headers["Cache-Control"] = "no-store"
     return response
+    
 
 def _get_token_expire_time():
     """expiration time in seconds.

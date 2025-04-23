@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta, timezone
 import jwt
 from flask import current_app
-from flask_api import result
+from flask_api.util import result
+from pprint import pprint
+import sys
 
 def encode_access_token(user): 
     """Generates a JWT access token for the given user ID.
@@ -10,8 +12,11 @@ def encode_access_token(user):
     """
 
     now = datetime.now(timezone.utc)
-    token_age_h = current_app.config("TOKEN_EXPIRE_HOURS")
-    token_age_m = current_app.config.get("TOKEN_EXPIRE_MINUTES")
+
+
+    token_age_h = current_app.config["TOKEN_EXPIRE_HOURS"]
+    
+    token_age_m = current_app.config["TOKEN_EXPIRE_MINUTES"]
     exp = now + timedelta(hours=token_age_h, minutes=token_age_m)
     payload = {
         "exp": exp,
