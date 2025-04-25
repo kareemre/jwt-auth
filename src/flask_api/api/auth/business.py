@@ -23,6 +23,24 @@ def process_registration_request(email, password):
         status_code=HTTPStatus.CREATED,
         message="successfully registered",
     )
+    
+    
+def process_login_request(email, password):
+    """User login logic.
+    :params: email: the email used in login
+    :params: password: user's input password
+    :return: response
+    """
+    
+    user = User.find_by_email(email)
+    if not user or not user.check_password(password):
+        abort(HTTPStatus.UNAUTHORIZED, "email or password does not match", status="fail")
+    access_token = encode_access_token(user)
+    return _create_auth_successful_response(
+        token=access_token.decode(),
+        status_code=HTTPStatus.OK,
+        message="successfully logged in",
+    )
 
 
 def _create_auth_successful_response(token, status_code, message):
@@ -34,10 +52,10 @@ def _create_auth_successful_response(token, status_code, message):
     """
     response = jsonify(
         
-            "status": "success",
-            "message": message,
-            "access_token": token,
-            "expires_in": _get_token_expire_time(),
+            status="success",
+            message=message,
+            access_token=token,
+            expires_in=_get_token_expire_time(),
     )
     response.status_code = status_code
     response.headers["Cache-Control"] = "no-store"

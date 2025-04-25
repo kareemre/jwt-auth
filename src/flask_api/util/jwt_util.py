@@ -28,6 +28,7 @@ def encode_access_token(user):
     token = jwt.encode(payload, key, algorithm="HS256")
     return token
 
+
 def decode_access_token(token):
     """Decodes a JWT access token and returns the user ID.
     :param: token: The JWT token to decode.
