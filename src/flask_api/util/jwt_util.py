@@ -4,6 +4,7 @@ from flask import current_app
 from flask_api.util import result
 from pprint import pprint
 import sys
+from flask_api.models.token_blacklist import BlacklistedToken
 
 def encode_access_token(user): 
     """Generates a JWT access token for the given user ID.
@@ -18,6 +19,7 @@ def encode_access_token(user):
     
     token_age_m = current_app.config["TOKEN_EXPIRE_MINUTES"]
     exp = now + timedelta(hours=token_age_h, minutes=token_age_m)
+    
     payload = {
         "exp": exp,
         "iat": now,
@@ -46,6 +48,11 @@ def decode_access_token(token):
     except jwt.InvalidTokenError:
         error = "Invalid access token, please log in again"
         return result.Fail(error)
+    
+    if BlacklistedToken.check_blacklist(access_token):
+        error = "Token blacklisted. Please log in again."
+        return Result.Fail(error)
+    
     
     user_dict = dict(
         user_id=payload["sub"],

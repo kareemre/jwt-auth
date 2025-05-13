@@ -12,6 +12,7 @@ def token_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         token_payload = _check_access_token()
+        
         for name, val in token_payload.items():
             setattr(decorated_function, name, val)
         return f(*args, **kwargs)
@@ -28,6 +29,7 @@ def admin_token_required(f):
         
         if not token_payload["admin"]:
             raise ApiForbidden()
+        
         for name, val in token_payload.items():
             setattr(decorated_function, name, val)
         return f(*args, **kwargs)
